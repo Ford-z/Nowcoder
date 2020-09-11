@@ -10,7 +10,6 @@ int main(){
         int x,n,m,t;
         cin >> x;
         if(x<10){
-            
             cout<<x<<endl;
         }
         else{
