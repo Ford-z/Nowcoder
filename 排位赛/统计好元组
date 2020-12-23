@@ -1,0 +1,32 @@
+#链接：https://ac.nowcoder.com/acm/contest/10324/B
+#来源：牛客网
+
+#现在给定一个数组arr，和a,b两个数字，你要做的就是找到（i，j，k）。且满足 
+    #1. 0 <= i < j < k < arr.size()
+    #2. |arr[i] - arr[j]| <= a
+    #3. |arr[j] - arr[k]| <= b
+#统计满足条件的个数并返回(最后结果可能很大，请取1000000007的余数)。
+#
+# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+# 
+# @param arr int整型一维数组 
+# @param a int整型 
+# @param b int整型 
+# @return int整型
+#
+class Solution:
+    def countTriplets(self , arr , a , b ):
+        # write code here
+        cnt = 0 
+        length = len(arr)
+        for j, arr_j in enumerate(arr):#先找中间值j，然后向左向右选i,k同时判断条件1,2,https://leetcode-cn.com/problems/count-good-triplets/comments/
+            ilist = []
+            klist = []
+            for i in range(0,j):
+                if abs(arr[i] - arr_j) <= a:
+                    ilist += [i]
+            for k in range(j+1,length):
+                if abs(arr_j - arr[k]) <= b:
+                    klist += [k]
+            cnt+=len(ilist)*len(klist)
+        return cnt%1000000007
